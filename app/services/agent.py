@@ -1,7 +1,7 @@
 # app/services/agent.py
 from langgraph.graph import StateGraph, END
 from typing import TypedDict
-from app.infraestructure.database import ProductoRepositoryPostgres
+from app.infrastructure.database import ProductoRepositoryPostgres
 
 # Estado de nuestro grafo
 class AgentState(TypedDict):
