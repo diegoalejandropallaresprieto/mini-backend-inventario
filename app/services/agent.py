@@ -1,9 +1,8 @@
-# app/services/agent.py
 from langgraph.graph import StateGraph, END
 from typing import TypedDict
 from app.infrastructure.database import ProductoRepositoryPostgres
 
-# Estado de nuestro grafo
+# Estado del grafo
 class AgentState(TypedDict):
     producto_consultado: str
     stock_encontrado: int | None
@@ -15,7 +14,7 @@ def nodo_verificar_stock(state: AgentState):
     stock = repo.obtener_stock(state["producto_consultado"])
     return {"stock_encontrado": stock}
 
-# Nodo 2: Generación de respuesta (Aquí podrías integrar un LLM real)
+# Nodo 2: Generacion de respuesta
 def nodo_generar_respuesta(state: AgentState):
     stock = state["stock_encontrado"]
     producto = state["producto_consultado"]
@@ -27,7 +26,7 @@ def nodo_generar_respuesta(state: AgentState):
         
     return {"mensaje_final": mensaje}
 
-# Compilación del Grafo de LangGraph
+# Compilacion del Grafo de LangGraph
 def compilar_agente_stock():
     workflow = StateGraph(AgentState)
     
