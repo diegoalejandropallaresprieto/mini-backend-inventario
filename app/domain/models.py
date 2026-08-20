@@ -14,7 +14,6 @@ class Producto(BaseModel):
     categoria_id: int
 
 # Inversión de Dependencias
-# Definimos el contrato, pero no cómo se guarda en la base de datos.
 class IProductoRepository(ABC):
     @abstractmethod
     def guardar_producto(self, producto: Producto) -> Producto:
