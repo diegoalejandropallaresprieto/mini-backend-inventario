@@ -1,4 +1,8 @@
-```
+# Arquitectura del Sistema de Inventario
+
+A continuación se muestra el diagrama de clases basado en Arquitectura Limpia (Puertos y Adaptadores):
+
+```mermaid
 classDiagram
     namespace Capa_Dominio {
         class Producto {
@@ -28,6 +32,12 @@ classDiagram
             -Session db
             +guardar_producto(producto: Producto) Producto
             +obtener_stock(nombre_producto: String) int
+        }
+    }
+
+    IProductoRepository <|.. ProductoRepositoryPostgres : Implementa
+    ProductoRepositoryPostgres ..> ProductoORM : Usa para mapear a BD
+    ProductoRepositoryPostgres ..> Producto : Retorna al núcleo
         }
     }
 
