@@ -2,8 +2,14 @@ from fastapi import FastAPI, HTTPException
 from app.domain.models import Producto
 from app.infrastructure.database import ProductoRepositoryPostgres
 from app.services.agent import compilar_agente_stock
+from fastapi.responses import RedirectResponse
 
 app = FastAPI(title="Mini Backend de Inventario")
+
+@app.get("/")
+def read_root():
+    # Redirige automáticamente a los usuarios a la pantalla de /docs
+    return RedirectResponse(url="/docs")
 
 repo = ProductoRepositoryPostgres()
 agente = compilar_agente_stock()
